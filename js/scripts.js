@@ -9,36 +9,35 @@ var player = function () {
   this.diceData = 0;
 }
 
-player.prototype.adder = function () {
-  this.diceData = 0;
-
+player.prototype.adder = function (dice) {
+  this.diceData += dice;
 }
 
 pigDice.prototype.game = function (currentPlayer) {
   var points = 0;
   var dice = Math.floor((Math.random() * 6) + 1);
-  this.diceRoll = dice;
   if (dice === 1) {
-    points = 0;
-    this.diceRoll = 0;
-    console.log("reset")
+    currentPlayer.diceData = 0;
+    at++;
+    number++;
 
+    if (at >= players.length) {
+      at = 0;
+      number = 1;
+    }
+
+    $("#currentPoint").text("Current Point: " + players[at].points);
+    $("#Point").text("Point: " + 0);
+    $("#currentPlayer").text("Player " + number);
   } else {
-    points += this.diceRoll;
-    console.log("add")
+    currentPlayer.diceData += dice;
   }
-  console.log(dice)
 
-  console.log(currentPlayer)
   $("#currentPoint").text("Current Point: " + currentPlayer.points);
-  $("#Point").text("Point: " + points);
-
-  currentPlayer.points += points;
+  $("#Point").text("Point: " + currentPlayer.diceData);
 
   if (currentPoint.points >= 100) {
-    console.log("you win");
-  } else {
-    console.log("new Turn");
+    $("#win").text("you win");
   }
 
 }
@@ -49,6 +48,8 @@ var players = [];
 
 var at = 0;
 
+var number = 1;
+
 // User Interface Logic
 $(document).ready(function() {
 
@@ -58,7 +59,11 @@ $(document).ready(function() {
     $("#hold").show();
 
     var player1 = new player;
+    var player2 = new player;
+
+    $("#currentPlayer").text("Player " + number);
     players.push(player1);
+    players.push(player2);
   });
 
   $("#roll").click(function() {
@@ -66,8 +71,21 @@ $(document).ready(function() {
   });
 
   $("#hold").click(function() {
-    at++
-    if (at >= player.length)
+    players[at].points += players[at].diceData;
+
+    players[at].diceData = 0;
+
+    number++;
+    at++;
+
+    if (at >= players.length) {
       at = 0;
+      number = 1;
+    }
+
+    $("#currentPoint").text("Current Point: " + players[at].points);
+    $("#Point").text("Point: " + 0);
+    $("#currentPlayer").text("Player " + number);
+
   });
 });
