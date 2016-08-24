@@ -25,16 +25,11 @@ pigDice.prototype.game = function (currentPlayer) {
       at = 0;
       number = 1;
     }
-
-    $("#currentPoint").text("Current Point: " + players[at].points);
-    $("#Point").text("Point: " + 0);
-    $("#currentPlayer").text("Player " + number);
   } else {
     currentPlayer.diceData += dice;
   }
 
-  $("#currentPoint").text("Current Point: " + currentPlayer.points);
-  $("#Point").text("Point: " + currentPlayer.diceData);
+  displays();
 
   if (currentPoint.points >= 100) {
     $("#win").text("you win");
@@ -49,6 +44,13 @@ var players = [];
 var at = 0;
 
 var number = 1;
+
+var displays = function () {
+  $("#currentPoint").text("Current Point: " + players[at].points);
+  $("#currentPlayer").text("Player " + number);
+  $("#Point").text("Point: " + players[at].diceData);
+
+}
 
 // User Interface Logic
 $(document).ready(function() {
@@ -72,20 +74,24 @@ $(document).ready(function() {
 
   $("#hold").click(function() {
     players[at].points += players[at].diceData;
+    if (players[at].points >= 20) {
+      $("#win").text("You win Player " + number);
+      $("#hold").hide();
+      $('#roll').hide();
+      $("#currentPoint").hide();
+      $("#currentPlayer").hide();
+      $("#Point").hide();
+    } else {
+      players[at].diceData = 0;
 
-    players[at].diceData = 0;
+      number++;
+      at++;
 
-    number++;
-    at++;
-
-    if (at >= players.length) {
-      at = 0;
-      number = 1;
+      if (at >= players.length) {
+        at = 0;
+        number = 1;
+      }
+      displays();
     }
-
-    $("#currentPoint").text("Current Point: " + players[at].points);
-    $("#Point").text("Point: " + 0);
-    $("#currentPlayer").text("Player " + number);
-
   });
 });
