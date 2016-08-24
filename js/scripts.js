@@ -20,12 +20,7 @@ player.prototype.aiHolder = function () {
     players[at].diceData = 0;
 
     if (this.points >= 20) {
-      $("#win").text("You win Player " + number);
-      $("#hold").hide();
-      $('#roll').hide();
-      $("#currentPoint").hide();
-      $("#currentPlayer").hide();
-      $("#Point").hide();
+      winner();
       return true;
     } else {
       number++;
@@ -55,25 +50,20 @@ pigDice.prototype.game = function (currentPlayer) {
       currentPlayer.diceData = 0;
       at++;
       number++;
-
       ai = false;
-
       if (at >= players.length) {
         at = 0;
         number = 1;
       }
+      
     } else {
       currentPlayer.diceData += dice;
     }
 
-    if (currentPoint.points >= 100) {
-      $("#win").text("you win");
-    } else if (currentPlayer.ai && ai && !(currentPoint.points >= 100)) {
-      console.log("AI Dice: " + currentPlayer.diceData);
+    if (currentPlayer.ai && ai) {
       ai = currentPlayer.aiHolder();
     } else {
       ai = false;
-      displays();
     }
   }
 }
@@ -87,10 +77,23 @@ var at = 0;
 var number = 1;
 
 var displays = function () {
+  $("#currentPoint").show();
+  $("#currentPlayer").show();
+  $("#Point").show();
   $("#currentPoint").text("Current Point: " + players[at].points);
   $("#currentPlayer").text("Player " + number);
   $("#Point").text("Point: " + players[at].diceData);
-  console.log(players);
+}
+
+var winner = function () {
+  $("#win").text("You win Player " + number);
+  $("#win").show();
+  $("#hold").hide();
+  $('#roll').hide();
+  $("#currentPoint").hide();
+  $("#currentPlayer").hide();
+  $("#Point").hide();
+  $("#reset").show();
 }
 
 // User Interface Logic
@@ -110,19 +113,36 @@ $(document).ready(function() {
     players.push(player2);
   });
 
+  $("#reset").click(function () {
+    $("#reset").hide();
+    $("#roll").show();
+    $("#hold").show();
+
+    $("#win").hide();
+
+    players = [];
+
+    var player1 = new player;
+    var player2 = new player;
+    player2.ai = true;
+
+    $("#currentPlayer").text("Player " + number);
+    players.push(player1);
+    players.push(player2);
+
+  });
+
   $("#roll").click(function() {
-    game.game(players[at])
+    game.game(players[at]);
+
+    if (!(players[at].ai))
+      displays();
   });
 
   $("#hold").click(function() {
     players[at].points += players[at].diceData;
     if (players[at].points >= 20) {
-      $("#win").text("You win Player " + number);
-      $("#hold").hide();
-      $('#roll').hide();
-      $("#currentPoint").hide();
-      $("#currentPlayer").hide();
-      $("#Point").hide();
+      winner();
     } else {
       players[at].diceData = 0;
       number++;
@@ -131,10 +151,11 @@ $(document).ready(function() {
         at = 0;
         number = 1;
       }
-      displays();
 
       if (players[at].ai) {
         game.game(players[at]);
+      } else {
+          displays();
       }
     }
   });
