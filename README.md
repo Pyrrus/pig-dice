@@ -49,7 +49,7 @@ _None yet_
 
 _Martin Cartledge: martincartledge@icloud.com_
 
-_Adam Gorbahn: _
+_Adam Gorbahn:_
 
 ## Technologies Used
 
