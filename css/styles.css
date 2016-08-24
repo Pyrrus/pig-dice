@@ -15,6 +15,8 @@ body {
 
 h2 {
   color: #fff;
+  font-size: 3em;
+  padding: 50px;
 }
 
 #roll, #hold, #reset {
@@ -24,6 +26,32 @@ h2 {
 .btn {
   background-color: #456E82;
   border: 2px solid #000;
+  color: #fff;
+}
+
+#start, #roll, #hold, #reset {
+  font-size: 3em;
+  width: 300px;
+}
+
+#start:hover {
+  background-color: green;
+  color: #fff;
+}
+
+#roll:hover {
+  background-color: yellow;
+  color: #000;
+}
+
+#hold:hover {
+  background-color: red;
+  color: #fff;
+}
+
+#reset:hover {
+  background-color: purple;
+  color: #fff;
 }
 
 .btn:hover {
