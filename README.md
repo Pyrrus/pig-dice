@@ -1,12 +1,14 @@
 # _Pig Dice_
 
-#### _{Brief description of application}, 8-24-16_
+#### Luck-based dice game, 1's are the only enemy.
+
+##### 8-24-16
 
 #### By _**Martin Cartledge &amp; Adam Gorbahn**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_A fast climb can turn into an even faster descent. Roll the dice to gain points, the first player to 100 points wins. Avoid rolling a '1' at all costs - they bring your turn points to '0'._
 
 ## Specifications
 
@@ -22,13 +24,15 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 * _Example Input: Click 'Hold' or click 'Continue Playing'_
 * _Example Output: Pass turn to computer or roll again_
 
-#### If you roll a '1', your turn is over and you lose all of your points in that turn.
+## Rules:
 
-#### If player rolls any other number than '1', that value is added to players turn total.
+##### - If you roll a '1', your turn is over and you lose all of your points in that turn.
 
-#### If player 'holds' during turn, the turn total is added to their total score.
+##### - If player rolls any other number than '1', that value is added to players turn total.
 
-#### If player receives 100 points before the computer, they win.
+##### - If player 'holds' during turn, the turn total is added to their total score.
+
+##### - If player receives 100 points before the computer, they win.
 
 ## Setup/Installation Requirements
 
