@@ -14,15 +14,15 @@ _A fast climb can turn into an even faster descent. Roll the dice to gain points
 
 #### _On start you will begin the game_
 * _Example Input: Click 'Start' _
-* _Example Output: 'One Player vs. Computer'_
+* _Example Output: 'Player 1: Roll or Hold'_
 
 #### _Click 'Roll' to begin game_
 * _Example Input: Click 'Roll' _
 * _Example Output: Game displays random number between 1-6_
 
-#### _Choose to 'hold' or 'continue playing'_
-* _Example Input: Click 'Hold' or click 'Continue Playing'_
-* _Example Output: Pass turn to computer or roll again_
+#### _Choose to 'Hold' or 'Roll'_
+* _Example Input: Click 'Hold' or click 'Roll'_
+* _Example Output: Pass turn to computer or 'Roll'_
 
 ## Rules:
 
